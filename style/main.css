@@ -538,12 +538,11 @@ img {
   border-bottom: 2px solid var(--clr-gray);
 }
 .updatescard__img {
-  width: 100%;
-  height: 100%;
+  height: 54rem;
 }
 .updatescard img {
-  width: 110%;
-  height: 110%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 .updatesleft {
@@ -1466,4 +1465,9 @@ textarea {
     font-family: var(--font-style);
     border-radius: 0.5rem;
   }
+}
+
+.header__nav ul {
+  display: flex;
+  gap: 3rem;;
 }

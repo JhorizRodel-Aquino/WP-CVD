@@ -20,15 +20,7 @@
             <?php if(function_exists('the_custom_logo')) {the_custom_logo();}?>
             <h1>CREATIVE <span>VISUAL</span> DESIGN</h1>
           </div>
-          <nav>
-            <!-- <ul class="header__nav">
-              <li><a href="./Home.html">Home</a></li>
-              <li><a href="./About.html">About</a></li>
-              <li><a href="./Services.html">Services</a></li>
-              <li><a href="./Updates.html">Updates</a></li>
-              <li><a href="./Contact.html">Contact</a></li>
-            </ul> -->
-
+          <nav class="header__nav">
             <?php wp_nav_menu(array(
                 'theme_location' => 'header_menu',
                 'menu_class'=> 'header__nav'

@@ -40,5 +40,25 @@ function cvd_custom_post() {
     );
 
     register_post_type('services', $service_args);
+
+
+    $project_label = array(
+    'name' => __('Projects', 'textdomain'),
+    'singular_name' => __('Project', 'textdomain'),
+    'add_new' => __('Add Project', 'textdomain'),
+    'edit_item' => __('Edit Project', 'textdomain'),
+    'add_new_item' => __('Add New Project', 'textdomain'),
+    'all_items' => __('Projects', 'textdomain'),
+    );
+
+    $project_args = array(
+        'labels' => $project_label,
+        'public' => true,
+        'capability_type' => 'post',
+        'show_ui' => true,
+        'supports' => array('title', 'editor', 'thumbnail', 'custom-fields')
+    );
+
+    register_post_type('projects', $project_args);
 }
 add_action('init', 'cvd_custom_post');

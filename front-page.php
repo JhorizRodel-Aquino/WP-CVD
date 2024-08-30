@@ -21,8 +21,7 @@
     <div class="homeservices__wrapper">
         <?php $services = new WP_Query(array(
             'post_type' => 'services',
-            'posts_per_page' => -1, 
-            'order' => 'ASC'
+            'posts_per_page' => -1
         ))?>
 
         <?php if($services->have_posts()) : while($services->have_posts()) : ($services->the_post())?>
@@ -94,8 +93,7 @@
         <div class="trends__content">
         <?php $trends = new WP_Query(array(
             'post_type' => 'post',
-            'posts_per_page' => -1, 
-            'order' => 'ASC'
+            'posts_per_page' => -1
         ))?>
 
         <?php if($trends->have_posts()) : while($trends->have_posts()) : ($trends->the_post())?>

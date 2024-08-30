@@ -11,8 +11,7 @@
             <div class="updatesleft">
                 <?php $trends = new WP_Query(array(
                     'post_type' => 'post',
-                    'posts_per_page' => 2, 
-                    'order' => 'ASC'
+                    'posts_per_page' => -1
                 ))?>
                 <?php if($trends->have_posts()) : while($trends->have_posts()) : $trends->the_post();?>
 
@@ -65,67 +64,62 @@
                 <div class="categories">
                 <h3>CATEGORIES</h3>
                 <table>
-                    <tr>
-                    <td>Web Design</td>
-                    <td>(2)</td>
-                    </tr>
-                    <tr>
-                    <td>Web Development</td>
-                    <td>(3)</td>
-                    </tr>
-                    <tr>
-                    <td>Web Frame</td>
-                    <td>(1)</td>
-                    </tr>
-                    <tr>
-                    <td>Vector & Logo</td>
-                    <td>(5)</td>
-                    </tr>
-                    <tr>
-                    <td>Social edia</td>
-                    <td>(2)</td>
-                    </tr>
+                    <?php $categories = get_categories()?>
+                    <?php foreach($categories as $category) {?>
+                        
+                        <tr>
+                            <td><a href="<?php echo get_category_link($category->term_id)?>"><?php echo $category->name?></a></td>
+                            <td>(<?php echo $category->category_count?>)</td>
+                        </tr>
+                    <?php }?>
+
+                    
+
                 </table>
                 </div>
                 <div class="recent">
                 <h3>RECENT POST</h3>
-                <div class="recentcard">
-                    <div class="recent__img">
-                    <img src="./img/tech/5.jpg" alt="" />
+
+                <?php $trends = new WP_Query(array(
+                    'post_type' => 'post',
+                    'posts_per_page' => -1,
+                    'orderby' => 'most_recent'
+                ))?>
+
+                <?php if($trends->have_posts()) : while($trends->have_posts()) : ($trends->the_post())?>
+                
+                    <div class="recentcard">
+                        <div class="recent__img">
+                            <?php if(has_post_thumbnail()) {the_post_thumbnail();}?>
+                        </div>
+                        <div class="recenttext">
+                            <a href="<?php the_permalink()?>">
+                                <h4><?php the_title()?></h4>
+                            </a> 
+                            <p><?php echo get_the_date("M j, Y")?></p>
+                        </div>
                     </div>
-                    <div class="recenttext">
-                    <h4>Lorem ipsum dolor sit amet consectetur.</h4>
-                    <p>August 06, 2024</p>
-                    </div>
-                </div>
-                <div class="recentcard">
-                    <div class="recent__img">
-                    <img src="./img/tech/5.jpg" alt="" />
-                    </div>
-                    <div class="recenttext">
-                    <h4>Lorem ipsum dolor sit amet consectetur.</h4>
-                    <p>August 06, 2024</p>
-                    </div>
-                </div>
-                <div class="recentcard">
-                    <div class="recent__img">
-                    <img src="./img/tech/5.jpg" alt="" />
-                    </div>
-                    <div class="recenttext">
-                    <h4>Lorem ipsum dolor sit amet consectetur.</h4>
-                    <p>August 06, 2024</p>
-                    </div>
-                </div>
+
+                <?php endwhile;
+                    else : 
+                        echo "no menu";
+                    endif;
+                    wp_reset_postdata();
+                ?>
+
+
                 </div>
                 <div class="tags">
                 <h3>TAGS</h3>
                 <div class="tabbuttons">
-                    <a href="" class="btn bg-light">WEB DESIGN</a>
-                    <a href="" class="btn bg-light">WIRE FRAME</a>
-                    <a href="" class="btn bg-dark">WEB DEVELOPMENT</a>
-                    <a href="" class="btn bg-light">LOGO</a>
-                    <a href="" class="btn bg-light">VECTOR</a>
-                    <a href="" class="btn bg-light">SOCIAL MEDIA</a>
+ 
+                    <?php $tags = get_tags();
+                        foreach($tags as $tag) { ?>
+                            <a href="<?php echo get_tag_link($tag->term_id)?>" class="btn bg-light"><?php echo $tag->name?></a>
+                        <?php } ?>
+                    
+
+
                 </div>
                 </div>
             </div>

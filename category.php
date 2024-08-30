@@ -1,14 +1,16 @@
 <?php get_header()?>
 
+
 <section class="updates">
     <div class="container">
     <div class="updates__wrapper">
         <div class="updates__title">
-            <sh2> <?php the_title()?> </sh2>
+            <sh2> <?php single_cat_title()?> </sh2>
             <p>Lorem ipsum dolor sit amet consectetur.</p>
         </div>
         <div class="updatesseparate">
             <div class="updatesleft">
+
                 <?php if(have_posts()) : while(have_posts()) : the_post();?>
 
                 <div class="updatescard">
@@ -22,7 +24,7 @@
                             <td>
                                 <a href=""><i class="fa-solid fa-user"></i></a>
                             </td>
-                            <td><?php echo get_the_author_meta('first_name')?></td>
+                            <td><?php echo get_the_author_meta('first_name')?> <?php echo get_the_author_meta('last_name')?></td>
                             <td>
                                 <a href=""
                                 ><i class="fa-solid fa-calendar-days"></i
@@ -35,14 +37,16 @@
                             <td><?php $tags = get_the_tags();
                                 if($tags) {
                                     foreach($tags as $tag) {
-                                        echo $tag->name;
+                                        echo $tag->name . " ";
                                     }
                                 }
                             ?></td>
                             </tr>
                         </table>
                         </div>
-                        <p><?php echo get_the_content()?></p>
+                        <h3><?php the_title()?></h3>
+                        <p><?php echo get_the_excerpt()?></p>
+                        <a href="">Read more...</a>
                     </div>
                 </div>
 
@@ -121,5 +125,12 @@
     </div>
     </div>
 </section>
+
+
+
+
+
+
+
 
 <?php get_footer()?>
